@@ -1,0 +1,42 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+library(readxl)
+
+library(ggplot2)
+
+library(plotly)
+```
+
+```{r}
+
+url <- "https://github.com/philbowsher/Foundation-of-the-R-Workflow-workshop-2019-09-06/raw/master/Examples/data/ad_treatment.xlsx"
+destfile <- "ad_treatment.xlsx"
+curl::curl_download(url, destfile)
+ad_treatment <- read_excel(destfile)
+ad_treatment
+```
+
+```{r}
+
+
+
+ggplot(ad_treatment) +
+ aes(x = health_status, y = age) +
+ geom_boxplot(fill = "#0c4c8a") +
+ theme_minimal()
+
+```
+
+```{r}
+
+p <- ggplot(data = diamonds, aes(x = cut, fill = clarity)) +
+            geom_bar(position = "dodge")
+ggplotly(p)
+```
+
